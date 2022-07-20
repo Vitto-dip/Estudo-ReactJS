@@ -5,6 +5,9 @@ import { Titulo } from './styled'
 
 import Texto from '../../components/teste.js'
 import Texto2 from '../../components/teste2.js'
+import Props from '../../components/props.js'
+
+import { useState } from 'react';
 
 export default function Index() {
    let mostrar = false;
@@ -20,6 +23,30 @@ export default function Index() {
     {nome: 'Luidi' , idade: 40},
     {nome: 'Princesa', idade: 20}
    ]
+
+   const [a, setA] = useState(0);
+   const [b, setB] = useState('Mario');
+   const [c, setC] = useState(true);
+   const [d, setD] = useState(new Date());
+   const [e, setE] = useState({nome: 'Mario', profissao: 'Encanador'});
+   const [f, setF] = useState(['Mario', 'Luidi', 'Princesa']);
+   const [g, setG] = useState([
+    {nome: 'Luidi', profissao: 'Entregador de Pizza'},
+    {nome: 'Princesa', profissao: 'Ser sequestrada'}
+   ]);
+
+   const[nome, setNome] = useState('Mario');
+   const[hobby, setHobby] = useState('Salvar a Princesa');
+   const[jogo, setJogo] = useState({ jogo:'MarioKart', avaliacao: 8.8 });
+   const [jogos, setJogos] = useState([
+    { jogo2: 'MarioBros', avaliacao2: 9.2 },
+    { jogo2: 'Sonic', avaliacao2: 8.9 }
+   ])
+
+   const adicionarJogo = (jogo) =>  {
+    let x = [...jogos, jogo];
+    setJogos(x);
+   }
    
     return (
         <main>
@@ -50,6 +77,25 @@ export default function Index() {
                 {info2.map(item => (
                     <p> {item.nome}-{item.idade} </p>
                 ))}
+            </div>
+
+            <div>
+                <h2> Variaveis de estado </h2>
+
+                <div> {a} </div>
+                <div> {b} </div>
+                <div> {c ? 'sim' : 'não'} </div>
+                <div> {d.toISOString()} </div>
+                <div> {e.nome} - {e.profissao} </div>
+                <div> {f[0]} </div>
+                <div> {g[1].nome} - {g[1].profissao} </div>
+            </div>
+
+            <div>
+                <h2> Props </h2>
+
+                <Props nome={nome} hobby={hobby} jogo={jogo} avaliacao={jogo} jogos={jogos} adicionar={adicionarJogo} />
+
             </div>
         </main>
     )
