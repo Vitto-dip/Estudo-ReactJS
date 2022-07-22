@@ -7,7 +7,7 @@ import Texto from '../../components/teste.js'
 import Texto2 from '../../components/teste2.js'
 import Props from '../../components/props.js'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Index() {
    let mostrar = false;
@@ -24,6 +24,8 @@ export default function Index() {
     {nome: 'Princesa', idade: 20}
    ]
 
+////////////////////////////
+
    const [a, setA] = useState(0);
    const [b, setB] = useState('Mario');
    const [c, setC] = useState(true);
@@ -34,6 +36,8 @@ export default function Index() {
     {nome: 'Luidi', profissao: 'Entregador de Pizza'},
     {nome: 'Princesa', profissao: 'Ser sequestrada'}
    ]);
+
+////////////////////////////
 
    const[nome, setNome] = useState('Mario');
    const[hobby, setHobby] = useState('Salvar a Princesa');
@@ -48,6 +52,25 @@ export default function Index() {
     setJogos(x);
    }
    
+////////////////////////////
+
+   const[numero1, setNumero1] = useState(0);
+   const[numero2, setNumero2] = useState(0);
+   const[resultado, setResultado] = useState(0);
+
+   const somar = () => {
+    let y = numero1 + numero2;
+    setResultado(y);
+   }
+
+   //useEffect(somar, [numero1, numero2]) forma simplificada
+
+   useEffect(() => {
+    somar();
+   }, [numero1, numero2])
+
+////////////////////////////
+
     return (
         <main>
             <Titulo> Hello!! It´s me Marioo! </Titulo>
@@ -95,6 +118,26 @@ export default function Index() {
                 <h2> Props </h2>
 
                 <Props nome={nome} hobby={hobby} jogo={jogo} avaliacao={jogo} jogos={jogos} adicionar={adicionarJogo} />
+
+            </div>
+
+            <div>
+                <h2> Eventos </h2>
+
+                <div>
+                    <h3> Numero 1: </h3>
+                    <input type="number" value={numero1} onChange={e => setNumero1(Number(e.target.value))} />
+                </div>
+                <div>
+                    <h3> Numero 2: </h3>
+                    <input type="number" value={numero2} onChange={e => setNumero2(Number(e.target.value))} />
+                </div>
+                <div>
+                    {resultado}
+                </div>
+                <div>
+                    <button onClick={somar} > Somar </button>
+                </div>
 
             </div>
         </main>
