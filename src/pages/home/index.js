@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Titulo } from './styled'
 
@@ -71,6 +71,12 @@ export default function Index() {
 
 ////////////////////////////
 
+    const naveg = useNavigate();
+
+    const abrirTeste = () => {
+        naveg("/teste");
+    }
+
     return (
         <main>
             <Titulo> Hello!! It´s me Marioo! </Titulo>
@@ -139,6 +145,24 @@ export default function Index() {
                     <button onClick={somar} > Somar </button>
                 </div>
 
+            </div>
+
+            <div>
+                <h2> Parametros entre Paginas </h2>
+
+                <div>
+                    <Link to="/teste" > Teste </Link>
+
+                    <button onClick={abrirTeste}> Teste </button>
+                </div>
+            </div>
+
+            <div>
+                <h2>Props em Styled-Components</h2>
+
+                <div>
+                    <Link to="/contato" > Contatos </Link>
+                </div>
             </div>
         </main>
     )
